@@ -29,20 +29,21 @@ all: $(NAME)
 
 
 $(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+	@printf "Compilando objetos...\r"
+	@$(AR) $(NAME) $(OBJ)
 
 bonus: 
 		make SRC="$(SRC) $(BSRC)"
 
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(BOBJ)
+	@$(RM) $(OBJ) $(BOBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 

@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 10:33:18 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/08/28 13:46:49 by rfleritt         ###   ########.fr       */
+/*   Created: 2025/08/28 13:43:08 by rfleritt          #+#    #+#             */
+/*   Updated: 2025/08/28 13:43:51 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int main(int argc, char **argv, char **env)
+void	sigint_handler(int sig)
 {
-    t_data	data;
-		
-	signal(SIGINT, sigint_handler);
-    shell_prompt(&data);
-    return (0);    
+	(void)sig;
+
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }

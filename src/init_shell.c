@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 10:33:18 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/08/28 13:46:49 by rfleritt         ###   ########.fr       */
+/*   Created: 2025/08/28 13:44:11 by rfleritt          #+#    #+#             */
+/*   Updated: 2025/08/28 13:46:21 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int main(int argc, char **argv, char **env)
+void	shell_prompt(t_data *data)
 {
-    t_data	data;
+	while (1)
+    {
+        data->input = readline("minishell> ");
 		
-	signal(SIGINT, sigint_handler);
-    shell_prompt(&data);
-    return (0);    
+        if (!data->input)
+        {
+            printf("exit\n");
+            break ;
+        }
+        if (data->input)
+            add_history(data->input);
+    }
 }
