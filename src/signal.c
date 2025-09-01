@@ -6,7 +6,7 @@
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:43:08 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/08/28 13:43:51 by rfleritt         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:33:29 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,10 @@ void	sigint_handler(int sig)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+}
+
+void	new_signal(void)
+{
+	signal(SIGINT, sigint_handler);
+    signal(SIGQUIT, SIG_IGN);
 }
