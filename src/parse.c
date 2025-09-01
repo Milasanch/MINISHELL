@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 10:33:18 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/09/01 09:31:34 by rfleritt         ###   ########.fr       */
+/*   Created: 2025/09/01 09:43:10 by rfleritt          #+#    #+#             */
+/*   Updated: 2025/09/01 13:15:29 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int main(int argc, char **argv, char **env)
+int	parse_input(t_data *data)
 {
-    t_data	*data;
-    (void)argv;
-    (void)env;
-		
-    if (argc != 1)
-    {
-        ft_putstr_fd("No arguments\n", 2);
-        return (1);
-    }
-	data = init_shell(env);
-    shell_prompt(data);
-    return (0);    
+	if (ft_strcmp("", data->input) != 0)
+		add_history(data->input);
+	
+	//if (tok_init(data))
+	//	return (LOOP_STOP);
 }
