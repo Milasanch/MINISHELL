@@ -2,7 +2,7 @@ NAME = minishell
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 LDFLAGS = -lreadline
 
 LIBFT = libft/libft.a
@@ -39,4 +39,17 @@ fclean: clean
 
 re: fclean all
 	@echo "Recompilation complete!"
-.PHONY: all clean fclean re
+
+valgrind: re
+	valgrind -s \
+		--tool=memcheck \
+		--leak-check=full \
+		--show-leak-kinds=all \
+		--show-reachable=yes \
+		--track-origins=yes \
+		--trace-children=yes \
+		--track-fds=yes \
+		--suppressions=valgrind/valgrind.sup \
+		--log-file=valgrind/informe.txt \
+		./$(NAME)
+.PHONY: all clean fclean re valgrind

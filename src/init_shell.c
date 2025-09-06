@@ -6,8 +6,7 @@
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:44:11 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/09/02 13:33:05 by rfleritt         ###   ########.fr       */
-/*   Updated: 2025/09/01 17:29:21 by rfleritt         ###   ########.fr       */
+/*   Updated: 2025/09/04 12:20:11 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +34,7 @@ void	shell_prompt(t_data *data)
         {
             rl_clear_history();
             printf("exit\n");
+            free(data);
             break ;
         }
         if (data->input)
