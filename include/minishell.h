@@ -6,7 +6,7 @@
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 09:23:49 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/09/06 17:40:02 by rfleritt         ###   ########.fr       */
+/*   Updated: 2025/09/06 18:32:00 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@
 # include <string.h>
 # include <termios.h>
 # include <termcap.h>
+# include <stdbool.h>
+# include "../libft/libft.h"
+
+# define LOOP_STOP 1
+# define LOOP_RUN 0
+
+typedef enum e_quote {
+    GENERAL,
+	IN_QUOTE,
+	SINGLE,
+	DOUBLE
+} t_quote;
 # include <stdbool.h>
 # include "../libft/libft.h"
 
@@ -63,10 +75,18 @@ typedef struct s_data
     char **env;
     bool	quote;
     t_token	*token;
+    char **env;
+    bool	quote;
+    t_token	*token;
 }	t_data;
 
 void	sigint_handler(int sig);
 void	shell_prompt(t_data *data);
+void	new_signal(void);
+int		parse_input(t_data *data);
+int     parse_syntax(t_data *data);
+int 	tok_init(t_data *data);
+t_data  *init_shell(char **env);
 void	new_signal(void);
 int		parse_input(t_data *data);
 int     parse_syntax(t_data *data);
