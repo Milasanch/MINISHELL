@@ -6,7 +6,7 @@
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:44:11 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/09/02 13:33:05 by rfleritt         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:52:39 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	shell_prompt(t_data *data)
 	while (1)
     {
         data->input = readline("minishell> ");
-		
         if (!data->input)
         {
             rl_clear_history();
             printf("exit\n");
+            free(data);
             break ;
         }
         if (data->input)

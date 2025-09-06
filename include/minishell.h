@@ -6,7 +6,7 @@
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 09:23:49 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/09/02 13:32:56 by rfleritt         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:40:02 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,26 @@
 # include <stdbool.h>
 # include "../libft/libft.h"
 
-# define LOOP_STOP 0
-# define LOOP_RUN 1
+# define LOOP_STOP 1
+# define LOOP_RUN 0
+
+typedef enum e_quote {
+    GENERAL,
+	IN_QUOTE,
+	SINGLE,
+	DOUBLE
+} t_quote;
 
 typedef enum e_type {
-    CMD,
-    ARG,
-    PIPE,
-    REDIR_OUT,
-    REDIR_IN,
-    APPEND,
-    HEREDOC
+    T_WORD,
+    T_ARG,
+    T_PIPE,
+    T_AND,
+    T_OR,
+    T_REDIR_OUT,
+    T_REDIR_IN,
+    T_APPEND,
+    T_HEREDOC
 } t_type;
 
 typedef struct s_token {
@@ -52,6 +61,7 @@ typedef struct s_data
 {
     char *input;
     char **env;
+    bool	quote;
     t_token	*token;
 }	t_data;
 
@@ -59,6 +69,7 @@ void	sigint_handler(int sig);
 void	shell_prompt(t_data *data);
 void	new_signal(void);
 int		parse_input(t_data *data);
+int     parse_syntax(t_data *data);
 int 	tok_init(t_data *data);
 t_data  *init_shell(char **env);
 
